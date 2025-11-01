@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Placement Cell Analysis - Vellalar College for Women</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+
+    /* Header layout */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      gap: 0; /* Removes space between logos and text */
+    }
+
+    .logo {
+      width: 200px;
+      height: auto;
+      display: block;
+    }
+
+    /* Center block */
+    .college-info {
+      flex: 0 1 auto;
+      text-align: center;
+      line-height: 1.6;
+      margin: 0 10px;
+    }
+
+    .college-info h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .college-info h2 {
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      margin: 4px 0;
+    }
+
+    .college-info p {
+      margin: 2px 0;
+      font-size: 15px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .college-info .small {
+      font-size: 13px;
+      color: #555;
+      font-weight: normal;
+    }
+
+    .btn-link {
+      display: inline-block;
+      font-size: 20px;
+      color: white;
+      background: #2980b9;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      margin: 10px;
+      transition: background 0.3s;
+    }
+
+    .btn-link:hover {
+      background: #1f5f8a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Left Logo -->
+    <img src="{{ url_for('static', filename='logo1.png') }}" alt="College Logo" class="logo">
+
+    <!-- College Info -->
+    <div class="college-info">
+      <h1>VELLALAR COLLEGE FOR WOMEN</h1>
+      <h2>(AUTONOMOUS)</h2>
+      <h2>Thindal, Erode - 638 012</h2>
+
+    </div>
+
+    <!-- Right Logo -->
+    <img src="{{ url_for('static', filename='logo2.png') }}" alt="Anniversary Logo" class="logo">
+  </header>
+
+  <hr/>
+
+  <h2>Placement Cell Analysis</h2>
+  <a href="{{ url_for('year_wise') }}" class="btn-link">📊 Year-wise Analysis</a>
+  <a href="{{ url_for('company_wise') }}" class="btn-link">🏢 Company-wise Analysis</a>
+</body>
+</html>

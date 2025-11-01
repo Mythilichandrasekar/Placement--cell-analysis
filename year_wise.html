@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Year-wise Placement Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #2c3e50;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #16a085;
+      margin-top: 20px;
+    }
+
+    /* Updated label style for larger year text */
+    label {
+      font-size: 24px;  /* Larger font size */
+      margin-right: 15px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 8px 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 70%;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #16a085;
+      color: white;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: white;
+      background: #2c3e50;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: #1a252f;
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <a href="{{ url_for('home') }}" class="back-btn">⬅ Back to Home</a>
+
+  <!-- Main Title -->
+  <h1>Year-wise Placement Analysis</h1>
+
+  <!-- Year Selection Form -->
+  <form method="POST">
+    <h2>Select a Year:</h2>
+
+    <!-- Loop through YEAR options dynamically -->
+    {% for y in YEARS %}
+      <label>
+        <input type="radio" name="year" value="{{ y }}" {% if selected_year == y %}checked{% endif %}>
+        {{ y }}
+      </label><br>
+    {% endfor %}
+
+    <!-- Submit Button -->
+    <button type="submit">Show Results</button>
+  </form>
+
+  <!-- Results Table (if available) -->
+  {% if results is not none %}
+    <h2>Placements in {{ selected_year }}</h2>
+    <table>
+      <tr>
+        <th>Company</th>
+        <th>Number of Students Placed</th>
+      </tr>
+
+      <!-- Loop through the results and display them -->
+      {% for row in results.itertuples() %}
+      <tr>
+        <td>{{ row.Company }}</td>
+        <td>{{ row.Student_Count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>

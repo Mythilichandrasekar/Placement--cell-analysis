@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company-wise Placement Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #2c3e50;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #16a085;
+      margin-top: 20px;
+    }
+
+    /* Updated label to show radio buttons inline */
+    label {
+      font-size: 30px;
+      margin: 0 15px;
+      display: inline-block;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 8px 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 70%;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2980b9;
+      color: white;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: white;
+      background: #2c3e50;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: #1a252f;
+    }
+  </style>
+</head>
+<body>
+  <a href="{{ url_for('home') }}" class="back-btn">⬅ Back to Home</a>
+  <h1>Company-wise Placement Analysis</h1>
+
+  <form method="POST">
+    <h2>Select a Company:</h2>
+    <div>
+      {% for c in COMPANIES %}
+        <label>
+          <input type="radio" name="company" value="{{ c }}" {% if selected_company == c %}checked{% endif %}>
+          {{ c }}
+        </label>
+      {% endfor %}
+    </div>
+    <button type="submit">Show Results</button>
+  </form>
+
+  {% if results is not none %}
+    <h2>Placements in {{ selected_company }}</h2>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Number of Students Placed</th>
+      </tr>
+      {% for row in results.itertuples() %}
+      <tr>
+        <td>{{ row.Year }}</td>
+        <td>{{ row.Student_Count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>
